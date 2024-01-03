@@ -1,10 +1,17 @@
 package com.restspringboot.RestSpringboot.model;
 
 import com.restspringboot.RestSpringboot.exception.UnsupportedMathOperationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import static com.restspringboot.RestSpringboot.model.NumberConverter.convertToDouble;
+import static com.restspringboot.RestSpringboot.model.NumberConverter.isNumeric;
 
 @Service
 public class MathOperations {
+
+    @Autowired
+    private NumberConverter numberConverter;
 
     public Double sum(String numberOne, String numberTwo){
         if(!isNumeric(numberOne) || !isNumeric(numberTwo) ){
@@ -46,20 +53,5 @@ public class MathOperations {
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
         return Math.sqrt(convertToDouble(number));
-    }
-
-
-    private Double convertToDouble(String strNumber) {
-        if(strNumber == null) return 0D;
-        String number = strNumber.replaceAll(",", ".");
-        if(isNumeric(number)) return Double.parseDouble(number);
-        return 0D;
-    }
-
-    private boolean isNumeric(String strNumber) {
-        if(strNumber == null) return false;
-        String number = strNumber.replaceAll(",", ".");
-        return number.matches("[-+]?[0-9]*\\.?[0-9]+");
-
     }
 }
