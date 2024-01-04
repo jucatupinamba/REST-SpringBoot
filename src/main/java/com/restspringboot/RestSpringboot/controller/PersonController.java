@@ -27,4 +27,27 @@ public class PersonController {
     return ResponseEntity.ok().body(personServices.findById(id));
     }
 
+    @RequestMapping( method = RequestMethod.POST,
+                     produces = MediaType.APPLICATION_JSON_VALUE,
+                    consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Person> create(
+            @RequestBody Person person){
+        return ResponseEntity.ok().body(personServices.create(person));
+    }
+
+    @RequestMapping( method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Person> update(
+            @RequestBody Person person){
+        return ResponseEntity.ok().body(personServices.update(person));
+    }
+
+    @RequestMapping( value = "/{id}",
+            method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable String id){
+        personServices.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

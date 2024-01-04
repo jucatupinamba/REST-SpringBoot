@@ -24,7 +24,6 @@ public class PersonServices {
 
         }
         return persons;
-
     }
 
     public Person findById(String id){
@@ -48,5 +47,22 @@ public class PersonServices {
         person.setAddress("Some address in Brasil " + i);
         person.setGender("Some gender " + i);
         return person;
+    }
+
+    public Person update(Person person){
+
+        logger.info("Updating one person!");
+        return person;
+    }
+
+    public Person create(Person person){
+
+        logger.info("Create one person!");
+        return person;
+    }
+
+    public void delete(String id){
+
+        logger.info("Deleting one person!");
     }
 }
