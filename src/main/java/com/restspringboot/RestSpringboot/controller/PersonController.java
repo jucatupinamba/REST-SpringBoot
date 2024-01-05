@@ -32,14 +32,14 @@ public class PersonController {
                  consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonVO> create(
             @RequestBody PersonVO personVO){
-        return ResponseEntity.ok().body(personServices.create(person));
+        return ResponseEntity.ok().body(personServices.create(personVO));
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
                 consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PersonVO> update(
             @RequestBody PersonVO personVO){
-        return ResponseEntity.ok().body(personServices.update(person));
+        return ResponseEntity.ok().body(personServices.update(personVO));
     }
 
     @DeleteMapping( value = "/{id}")
