@@ -1,6 +1,6 @@
 package com.restspringboot.RestSpringboot.controller;
 
-import com.restspringboot.RestSpringboot.model.Person;
+import com.restspringboot.RestSpringboot.data.vo.v1.PersonVO;
 import com.restspringboot.RestSpringboot.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,27 +18,27 @@ public class PersonController {
     private PersonServices personServices;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Person>> findAll(){
+    public ResponseEntity<List<PersonVO>> findAll(){
         return ResponseEntity.ok().body(personServices.findAll());
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> findById(
+    public ResponseEntity<PersonVO> findById(
             @PathVariable(value = "id") Long id){
     return ResponseEntity.ok().body(personServices.findById(id));
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
                  consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> create(
-            @RequestBody Person person){
+    public ResponseEntity<PersonVO> create(
+            @RequestBody PersonVO personVO){
         return ResponseEntity.ok().body(personServices.create(person));
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
                 consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> update(
-            @RequestBody Person person){
+    public ResponseEntity<PersonVO> update(
+            @RequestBody PersonVO personVO){
         return ResponseEntity.ok().body(personServices.update(person));
     }
 

@@ -1,14 +1,12 @@
 package com.restspringboot.RestSpringboot.services;
 
+import com.restspringboot.RestSpringboot.data.vo.v1.PersonVO;
 import com.restspringboot.RestSpringboot.exception.ResourceNotFoundException;
-import com.restspringboot.RestSpringboot.model.Person;
 import com.restspringboot.RestSpringboot.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
 @Service
 public class PersonServices {
@@ -18,25 +16,25 @@ public class PersonServices {
     private PersonRepository personRepository;
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
 
-    public List<Person> findAll(){
+    public List<PersonVO> findAll(){
 
         logger.info("Finding All People!");
 
         return personRepository.findAll();
     }
 
-    public Person findById(Long id){
+    public PersonVO findById(Long id){
         logger.info("Find one person!");
 
         return personRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this ID"));
     }
 
-    public Person update(Person person){
+    public PersonVO update(PersonVO person){
 
         logger.info("Updating one person!");
 
-        Person entity = personRepository.findById(person.getId()).orElseThrow(
+        PersonVO entity = personRepository.findById(person.getId()).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this ID"));
 
         entity.setFirstName(person.getFirstName());
@@ -47,7 +45,7 @@ public class PersonServices {
         return personRepository.save(entity);
     }
 
-    public Person create(Person person){
+    public PersonVO create(PersonVO person){
 
         logger.info("Create one person!");
 
@@ -56,7 +54,7 @@ public class PersonServices {
 
     public void delete(Long id){
 
-        Person entity = personRepository.findById(id).orElseThrow(
+        PersonVO entity = personRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("No records found for this ID"));
 
         personRepository.delete(entity);
