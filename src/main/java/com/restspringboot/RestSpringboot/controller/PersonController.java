@@ -17,35 +17,33 @@ public class PersonController {
     @Autowired
     private PersonServices personServices;
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Person>> findAll(){
         return ResponseEntity.ok().body(personServices.findAll());
     }
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> findById(
-            @PathVariable(value = "id") String id){
+            @PathVariable(value = "id") Long id){
     return ResponseEntity.ok().body(personServices.findById(id));
     }
 
-    @RequestMapping( method = RequestMethod.POST,
-                     produces = MediaType.APPLICATION_JSON_VALUE,
-                    consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+                 consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> create(
             @RequestBody Person person){
         return ResponseEntity.ok().body(personServices.create(person));
     }
 
-    @RequestMapping( method = RequestMethod.PUT,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+                consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Person> update(
             @RequestBody Person person){
         return ResponseEntity.ok().body(personServices.update(person));
     }
 
-    @RequestMapping( value = "/{id}",
-            method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable String id){
+    @DeleteMapping( value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         personServices.delete(id);
         return ResponseEntity.noContent().build();
     }
