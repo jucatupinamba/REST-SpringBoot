@@ -15,7 +15,7 @@
 	<description>Project SpringBoot for study</description>
 	<properties>
 		<java.version>21</java.version>
-		<dozer.version>6.5.2</dozer.version>
+		<model-mapper.version>3.2.0</model-mapper.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -32,23 +32,22 @@
 			<version>8.2.0</version>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.github.dozermapper</groupId>
-			<artifactId>dozer-core</artifactId>
-			<version>6.5.2</version>
-		</dependency>
 		<!-- Dependência para JAXB API -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
-			<version>2.3.1</version> <!-- Use a versão adequada -->
+			<version>2.3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>${model-mapper.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
