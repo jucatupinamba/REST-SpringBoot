@@ -1,24 +1,15 @@
 package com.restspringboot.RestSpringboot.data.vo.v1;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.util.Objects;
 
-@JsonPropertyOrder({"id", "first_Name", "last_Name", "address", "gender"})  //organiza ordem dos atributos no Json
 public class PersonVO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    @JsonProperty("first_Name")  // alterar o nome do atributo no Json
     private String firstName;
-    @JsonProperty("last_Name")
     private String lastName;
     private String address;
-    @JsonIgnore   //ignorar o atributo e não lançar no Json
     private String gender;
 
     public PersonVO(){}
