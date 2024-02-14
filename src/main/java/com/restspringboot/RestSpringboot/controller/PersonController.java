@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequestMapping("/api/person/v1")
@@ -17,26 +16,26 @@ public class PersonController {
     @Autowired
     private PersonServices personServices;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<PersonVO>> findAll(){
         return ResponseEntity.ok().body(personServices.findAll());
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<PersonVO> findById(
             @PathVariable(value = "id") Long id){
     return ResponseEntity.ok().body(personServices.findById(id));
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-                 consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+                 consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<PersonVO> create(
             @RequestBody PersonVO personVO){
         return ResponseEntity.ok().body(personServices.create(personVO));
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-                consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+                consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<PersonVO> update(
             @RequestBody PersonVO personVO){
         return ResponseEntity.ok().body(personServices.update(personVO));
